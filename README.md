@@ -1,2 +1,2 @@
-# kasou-labs
+# kasou-lab
 KASOUナレッジ解説用ページ
