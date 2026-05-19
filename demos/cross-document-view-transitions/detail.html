@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Detail</title>
+
+  <style>
+    @view-transition {
+      navigation: auto;
+    }
+
+    :root {
+      --bg: #0f1115;
+      --text: #ffffff;
+      --sub: #9ca3af;
+      --transition: cubic-bezier(.22, 1, .36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, "Noto Sans JP", sans-serif;
+    }
+
+    .p-hero {
+      min-height: 100vh;
+    }
+
+    .p-hero__imageWrap {
+      width: 100%;
+      height: 72vh;
+      overflow: hidden;
+      view-transition-name: card-image;
+    }
+
+    .p-hero__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .p-hero__content {
+      width: min(1000px, calc(100% - 48px));
+      margin-inline: auto;
+      padding: 56px 0 120px;
+    }
+
+    .p-hero__title {
+      margin: 0;
+      font-size: clamp(42px, 7vw, 120px);
+      line-height: .95;
+      letter-spacing: -.05em;
+    }
+
+    .p-hero__text {
+      margin-top: 24px;
+      color: var(--sub);
+      line-height: 2;
+      max-width: 720px;
+    }
+
+    .p-back {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 10;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 56px;
+      height: 56px;
+
+      border-radius: 999px;
+
+      backdrop-filter: blur(20px);
+      background: rgba(255,255,255,.08);
+
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: .7s;
+      animation-timing-function: var(--transition);
+    }
+
+    ::view-transition-old(card-image),
+    ::view-transition-new(card-image) {
+      animation-duration: .7s;
+      animation-timing-function: var(--transition);
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="index.html" class="p-back">
+    Back
+  </a>
+
+  <section class="p-hero">
+
+    <div class="p-hero__imageWrap">
+      <img
+        class="p-hero__image"
+        src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=1600&auto=format&fit=crop"
+        alt=""
+      >
+    </div>
+
+    <div class="p-hero__content">
+
+      <h1 class="p-hero__title">
+        Motion Design
+      </h1>
+
+      <p class="p-hero__text">
+        一覧ページのカード画像から、
+        詳細ページのヒーロー画像へ
+        Cross-Document View Transitions で
+        滑らかに接続されます。
+      </p>
+
+    </div>
+
+  </section>
+
+</body>
+</html>

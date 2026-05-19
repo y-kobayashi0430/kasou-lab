@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cross Document View Transitions Demo</title>
+
+  <style>
+    @view-transition {
+      navigation: auto;
+    }
+
+    :root {
+      --bg: #0f1115;
+      --card: #181b22;
+      --text: #ffffff;
+      --sub: #8b95a7;
+      --accent: #6ee7b7;
+      --radius: 28px;
+      --transition: cubic-bezier(.22, 1, .36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, "Noto Sans JP", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .l-container {
+      width: min(1200px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .p-header {
+      padding: 80px 0 48px;
+    }
+
+    .p-header__title {
+      margin: 0;
+      font-size: clamp(40px, 6vw, 88px);
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .p-header__text {
+      margin-top: 16px;
+      color: var(--sub);
+      line-height: 1.8;
+      max-width: 720px;
+    }
+
+    .p-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding-bottom: 80px;
+    }
+
+    .p-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .p-card__imageWrap {
+      overflow: hidden;
+      border-radius: var(--radius);
+      aspect-ratio: 1.2 / 1;
+      background: linear-gradient(135deg,#1f2937,#111827);
+      view-transition-name: card-image;
+    }
+
+    .p-card__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .8s var(--transition);
+    }
+
+    .p-card:hover .p-card__image {
+      transform: scale(1.06);
+    }
+
+    .p-card__body {
+      padding: 20px 8px 0;
+    }
+
+    .p-card__title {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+
+    .p-card__text {
+      margin-top: 10px;
+      color: var(--sub);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: .7s;
+      animation-timing-function: var(--transition);
+    }
+
+    ::view-transition-old(card-image),
+    ::view-transition-new(card-image) {
+      animation-duration: .7s;
+      animation-timing-function: var(--transition);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    @media (max-width: 900px) {
+      .p-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="p-header">
+    <div class="l-container">
+      <h1 class="p-header__title">
+        Projects
+      </h1>
+
+      <p class="p-header__text">
+        Cross-Document View Transitions のサンプルです。
+      </p>
+    </div>
+  </header>
+
+  <main class="l-container">
+
+    <div class="p-grid">
+
+      <a href="detail.html" class="p-card">
+
+        <div class="p-card__imageWrap">
+          <img
+            class="p-card__image"
+            src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=1200&auto=format&fit=crop"
+            alt=""
+          >
+        </div>
+
+        <div class="p-card__body">
+          <h2 class="p-card__title">
+            Motion Design
+          </h2>
+
+          <p class="p-card__text">
+            カード画像からヒーロー画像へ自然に変化します。
+          </p>
+        </div>
+
+      </a>
+
+    </div>
+
+  </main>
+
+</body>
+</html>
